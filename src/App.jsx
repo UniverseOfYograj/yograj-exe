@@ -3,6 +3,8 @@ import NavBar from "./components/NavBar";
 import CustomCursor from "./components/CustomCursor";
 import Hero from "./sections/Hero";
 import UniverseTransition from "./sections/UniverseTransition";
+import DNASection from "./sections/DNASection";
+import Experience from "./sections/Experience";
 
 export default function App() {
   return (
@@ -10,7 +12,9 @@ export default function App() {
       <CustomCursor />
       <NavBar />
       <Hero />
-      <UniverseTransition />
+<UniverseTransition />
+<DNASection />
+<Experience />
     </>
   );
 }
