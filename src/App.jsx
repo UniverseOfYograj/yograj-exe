@@ -15,6 +15,7 @@ export default function App() {
 <UniverseTransition />
 <DNASection />
 <Experience />
+
     </>
   );
 }
