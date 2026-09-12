@@ -108,22 +108,21 @@ export default function DNASection() {
             <OrbitingTechStack />
 
             <OrbitControls
-              enableZoom={false}
-              enablePan={false}
-              minDistance={5}
-              maxDistance={5}
-              autoRotate
-              autoRotateSpeed={0.35}
-            />
-
-            <EffectComposer>
-              <Bloom
-  intensity={0.28}
-  luminanceThreshold={0.72}
-  luminanceSmoothing={0.95}
+  enableZoom={false}
+  enablePan={false}
+  minDistance={5}
+  maxDistance={5}
+  autoRotate
+  autoRotateSpeed={0.35}
 />
-            </EffectComposer>
 
+<EffectComposer>
+  <Bloom
+    intensity={1.8}
+    luminanceThreshold={0.12}
+    luminanceSmoothing={0.9}
+  />
+</EffectComposer>
           </Canvas>
         </motion.div>
 

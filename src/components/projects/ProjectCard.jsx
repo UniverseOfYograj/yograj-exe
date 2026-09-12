@@ -12,128 +12,99 @@ export default function ProjectCard({
 }) {
   return (
     <motion.div
-      whileHover={{
-        y: -8,
-        rotateX: 2,
-      }}
-      transition={{ duration: 0.35 }}
-      className={`group relative overflow-hidden rounded-[28px]
+      whileHover={{ y: -5, scale: 1.01 }}
+      transition={{ duration: 0.25 }}
+      className={`group relative overflow-hidden rounded-3xl
       border border-cyan-400/15
       bg-[linear-gradient(180deg,#07111F,#040814)]
-      shadow-[0_0_35px_rgba(34,211,238,0.04)]
-      ${
-        hero ? "min-h-[540px]" : "min-h-[420px]"
-      }`}
-      style={{ transformStyle: "preserve-3d" }}
+      backdrop-blur-md shadow-lg
+      ${hero ? "lg:grid lg:grid-cols-[220px_1fr]" : ""}`}
     >
       {/* Orbit Ring */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{
           repeat: Infinity,
-          duration: 18,
+          duration: 24,
           ease: "linear",
         }}
-        className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full border border-cyan-400/10"
+        className="pointer-events-none absolute right-4 top-4 h-14 w-14 rounded-full border border-cyan-400/15"
       >
-        <div className="absolute left-1/2 top-0 h-3 w-3 -translate-x-1/2 rounded-full bg-cyan-300 shadow-[0_0_16px_#22d3ee]" />
+        <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 rounded-full bg-cyan-300" />
       </motion.div>
 
-      {/* Hover Glow */}
+      {/* Hover Glow (Optimized) */}
       <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-        <div className="absolute -left-20 top-16 h-56 w-56 rounded-full bg-cyan-400/10 blur-[90px]" />
-        <div className="absolute -right-20 bottom-12 h-56 w-56 rounded-full bg-blue-500/10 blur-[90px]" />
+        <div className="absolute -left-16 top-12 h-40 w-40 rounded-full bg-cyan-400/10 blur-[35px]" />
+        <div className="absolute -right-16 bottom-10 h-40 w-40 rounded-full bg-blue-500/10 blur-[35px]" />
       </div>
 
-      {/* Scan Beam */}
+      {/* Scan Beam (Lightweight) */}
       <motion.div
         animate={{ y: ["-120%", "140%"] }}
         transition={{
           repeat: Infinity,
-          duration: 5,
+          duration: 6,
           ease: "linear",
         }}
-        className="pointer-events-none absolute left-0 right-0 z-20 h-16 bg-gradient-to-b from-transparent via-cyan-300/10 to-transparent"
+        className="pointer-events-none absolute left-0 right-0 z-10 h-8 bg-gradient-to-b from-transparent via-cyan-300/10 to-transparent"
       />
 
       {/* Mission HUD */}
-      <div className="absolute left-0 right-0 top-0 z-30 flex items-center justify-between border-b border-cyan-400/10 bg-black/40 px-5 py-3 backdrop-blur-xl">
+      <div className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between border-b border-cyan-400/10 bg-black/30 px-3 py-2 backdrop-blur-sm">
         <div className="flex items-center gap-2">
-          <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-cyan-400 shadow-[0_0_14px_#22d3ee]" />
-          <span className="text-[11px] font-semibold tracking-[0.25em] text-cyan-200">
-            ONLINE
+          <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-400" />
+          <span className="text-[10px] tracking-[0.2em] text-cyan-200">
+            ACTIVE
           </span>
         </div>
 
-        <span className="text-[11px] tracking-[0.18em] text-white/60">
+        <span className="text-[10px] tracking-[0.18em] text-white/50">
           {title.slice(0, 4).toUpperCase()}-01
         </span>
       </div>
 
-      {/* Project Image */}
-      <div className="relative overflow-hidden pt-12">
-        <motion.img
-          whileHover={{ scale: 1.06 }}
-          transition={{ duration: 0.8 }}
-          src={image}
-          alt={title}
-          className={`w-full object-cover ${
-            hero ? "h-[300px]" : "h-[190px]"
+      {/* Planet Image */}
+      <div className="flex items-center justify-center p-5 pt-12">
+        <motion.div
+          whileHover={{ rotate: 5 }}
+          transition={{ duration: 0.3 }}
+          className={`relative overflow-hidden rounded-full border border-cyan-400/20 ${
+            hero ? "h-36 w-36 lg:h-40 lg:w-40" : "h-24 w-24"
           }`}
-        />
+        >
+          <img
+            src={image}
+            alt={title}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[#040814] via-transparent to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-cyan-400/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-cyan-400/10 to-transparent" />
+        </motion.div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 p-6">
-        <motion.h3
-          whileHover={{
-            textShadow: "0 0 18px rgba(34,211,238,.35)",
-          }}
-          className="text-2xl font-black text-white md:text-3xl"
-        >
-          {title}
-        </motion.h3>
+      <div className="relative z-10 p-5 pt-0 lg:pt-5">
+        <h3 className="text-lg font-bold text-white md:text-xl">{title}</h3>
 
-        <p className="mt-3 text-base leading-7 text-white/65">
+        <p className="mt-2 text-sm leading-6 text-white/65">
           {description}
         </p>
 
-        {/* Tech Stack */}
-        <div className="mt-5 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-wrap gap-2">
           {tech.map((item) => (
-            <motion.span
+            <span
               key={item}
-              whileHover={{
-                scale: 1.05,
-                borderColor: "rgba(103,232,249,.6)",
-              }}
-              className="rounded-full border border-cyan-400/20 bg-cyan-400/5 px-3 py-1.5 text-xs text-cyan-200"
+              className="rounded-full border border-cyan-400/20 bg-cyan-400/5 px-3 py-1 text-xs text-cyan-200"
             >
               {item}
-            </motion.span>
+            </span>
           ))}
         </div>
 
-        {/* Footer HUD */}
-        <div className="mt-6 flex items-center justify-between border-t border-cyan-400/10 pt-4">
-          <span className="text-xs uppercase tracking-[0.22em] text-white/40">
-            Mission Ready
-          </span>
-
-          <motion.div
-            animate={{ opacity: [0.4, 1, 0.4] }}
-            transition={{
-              repeat: Infinity,
-              duration: 2.2,
-            }}
-            className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_10px_#22d3ee]"
-          />
+        <div className="mt-4 border-t border-cyan-400/10 pt-3">
+          <ProjectButtons github={github} live={live} />
         </div>
-
-        <ProjectButtons github={github} live={live} />
       </div>
     </motion.div>
   );

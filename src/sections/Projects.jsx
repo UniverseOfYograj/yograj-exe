@@ -1,113 +1,113 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 import NebulaGlow from "../components/projects/NebulaGlow";
-import ProjectCard from "../components/projects/ProjectCard";
+import OrbitLines from "../components/projects/OrbitLines";
+import ProjectPlanet from "../components/projects/ProjectPlanet";
+import MissionPanel from "../components/projects/MissionPanel";
 
-
-import hero from "../assets/hero.jpg";
 const projects = [
   {
-    title: "Smart AgriCulture",
+    title: "Smart Agriculture",
     description:
-      "A modern agriculture platform focused on smart farming, clean UI and scalable architecture. Built as a complete web experience with responsive layouts and intuitive navigation.",
-    image: hero,
-    tech: ["React", "Tailwind", "JavaScript", "Responsive UI"],
+      "Modern agriculture platform with responsive UI and scalable architecture.",
+    tech: ["React", "Tailwind", "JavaScript"],
     github: "https://github.com/UniverseOfYograj",
     live: "#",
-    hero: true,
+    x: 22,
+    y: 28,
+    size: 94,
   },
-
   {
-    title: "Yograj Portfolio",
+    title: "Portfolio",
     description:
-      "A cinematic portfolio featuring 3D DNA animation, constellation timeline and immersive UI inspired by Apple and space aesthetics.",
-    image: hero,
+      "3D DNA portfolio inspired by Apple and futuristic interfaces.",
     tech: ["React", "Three.js", "Framer Motion"],
     github: "https://github.com/UniverseOfYograj",
     live: "#",
+    x: 78,
+    y: 26,
+    size: 84,
   },
-
   {
-    title: "430+ DSA Journey",
+    title: "430+ DSA",
     description:
-      "Documenting competitive programming progress with Coding Ninjas and GeeksforGeeks achievements, including Global Rank 1687.",
-    image: hero,
-    tech: ["Java", "DSA", "Problem Solving"],
+      "Coding Ninjas and GFG journey with strong problem-solving experience.",
+    tech: ["Java", "DSA"],
     github: "https://github.com/UniverseOfYograj",
     live: "#",
+    x: 28,
+    y: 76,
+    size: 88,
   },
-
   {
-    title: "Next Universe Project",
+    title: "Next Universe",
     description:
-      "A placeholder for the next ambitious project currently under development.",
-    image: hero,
+      "Upcoming ambitious project currently under development.",
     tech: ["Coming Soon"],
     github: "https://github.com/UniverseOfYograj",
     live: "#",
+    x: 82,
+    y: 74,
+    size: 82,
   },
 ];
 
 export default function Projects() {
+  const [active, setActive] = useState(projects[0]);
+
   return (
     <section
       id="projects"
-      className="relative overflow-hidden bg-black py-32"
+      className="relative overflow-hidden bg-black py-28"
     >
-      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#050B1A] to-black" />
-
       <NebulaGlow />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-20 text-center"
+          className="mb-16 text-center"
         >
           <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200">
-            Project Nebula
+            Project Orbit
           </span>
 
-          <h2 className="mt-6 text-5xl font-black text-white md:text-6xl">
-            Things I've Built
+          <h2 className="mt-5 text-5xl font-black text-white md:text-6xl">
+            Explore My Universe
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/60">
-            Every project explores a different part of my engineering journey—
-            from clean frontend experiences to scalable backend systems.
+          <p className="mx-auto mt-5 max-w-2xl text-white/60">
+            Every project is a planet. Click one to explore its mission.
           </p>
         </motion.div>
 
-        {/* Hero Project */}
-        <motion.div
-          initial={{ opacity: 0, y: 70 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <ProjectCard {...projects[0]} />
-        </motion.div>
+        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
+          {/* Orbit */}
+          <div className="relative h-[420px]">
+            <OrbitLines />
 
-        {/* Remaining Projects */}
-        <div className="mt-10 grid gap-8 md:grid-cols-2">
-          {projects.slice(1).map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.12,
-              }}
-            >
-              <ProjectCard {...project} />
-            </motion.div>
-          ))}
+            {/* Center Core */}
+            <div className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300 bg-cyan-400/15 shadow-[0_0_30px_rgba(34,211,238,.35)]">
+              <div className="flex h-full items-center justify-center text-sm font-bold text-cyan-200">
+                CORE
+              </div>
+            </div>
+
+            {projects.map((p) => (
+              <ProjectPlanet
+                key={p.title}
+                {...p}
+                active={active.title === p.title}
+                onClick={() => setActive(p)}
+              />
+            ))}
+          </div>
+
+          {/* Right Panel */}
+          <MissionPanel project={active} />
         </div>
       </div>
     </section>

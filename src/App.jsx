@@ -6,6 +6,7 @@ import UniverseTransition from "./sections/UniverseTransition";
 import DNASection from "./sections/DNASection";
 import Experience from "./sections/Experience";
 import Projects from "./sections/Projects";
+import Skills from "./sections/Skills";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
 <DNASection />
 <Experience />
 <Projects />
+<Skills />
 
     </>
   );
