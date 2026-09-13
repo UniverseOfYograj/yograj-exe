@@ -14,9 +14,9 @@ const projects = [
     tech: ["React", "Tailwind", "JavaScript"],
     github: "https://github.com/UniverseOfYograj",
     live: "#",
-    x: 22,
-    y: 28,
-    size: 94,
+    x: 18,
+    y: 25,
+    size: 70,
   },
   {
     title: "Portfolio",
@@ -25,9 +25,9 @@ const projects = [
     tech: ["React", "Three.js", "Framer Motion"],
     github: "https://github.com/UniverseOfYograj",
     live: "#",
-    x: 78,
-    y: 26,
-    size: 84,
+    x: 72,
+    y: 25,
+    size: 68,
   },
   {
     title: "430+ DSA",
@@ -36,9 +36,9 @@ const projects = [
     tech: ["Java", "DSA"],
     github: "https://github.com/UniverseOfYograj",
     live: "#",
-    x: 28,
-    y: 76,
-    size: 88,
+    x: 22,
+    y: 72,
+    size: 68,
   },
   {
     title: "Next Universe",
@@ -47,9 +47,9 @@ const projects = [
     tech: ["Coming Soon"],
     github: "https://github.com/UniverseOfYograj",
     live: "#",
-    x: 82,
-    y: 74,
-    size: 82,
+    x: 70,
+    y: 72,
+    size: 64,
   },
 ];
 
@@ -65,36 +65,52 @@ export default function Projects() {
       <NebulaGlow />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
+
+        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 35 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 text-center"
+          transition={{ duration: .7 }}
+          className="mb-20 text-center"
         >
           <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200">
             Project Orbit
           </span>
 
-          <h2 className="mt-5 text-5xl font-black text-white md:text-6xl">
+          <h2 className="mt-6 text-5xl font-black text-white md:text-6xl">
             Explore My Universe
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-white/60">
-            Every project is a planet. Click one to explore its mission.
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/60">
+            Every project is a planet connected to my engineering core.
           </p>
         </motion.div>
 
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
-          {/* Orbit */}
+
+          {/* Left Orbit */}
           <div className="relative h-[420px]">
             <OrbitLines />
 
-            {/* Center Core */}
-            <div className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300 bg-cyan-400/15 shadow-[0_0_30px_rgba(34,211,238,.35)]">
-              <div className="flex h-full items-center justify-center text-sm font-bold text-cyan-200">
-                CORE
-              </div>
-            </div>
+            {/* Core */}
+            <motion.div
+              animate={{
+                scale: [1, 1.05, 1],
+                boxShadow: [
+                  "0 0 20px rgba(34,211,238,.18)",
+                  "0 0 32px rgba(34,211,238,.35)",
+                  "0 0 20px rgba(34,211,238,.18)"
+                ]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity
+              }}
+              className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-300 bg-cyan-400/15 text-sm font-bold text-cyan-200"
+            >
+              CORE
+            </motion.div>
 
             {projects.map((p) => (
               <ProjectPlanet
@@ -108,6 +124,7 @@ export default function Projects() {
 
           {/* Right Panel */}
           <MissionPanel project={active} />
+
         </div>
       </div>
     </section>
