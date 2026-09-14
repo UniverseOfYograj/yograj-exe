@@ -8,10 +8,12 @@ import Experience from "./sections/Experience";
 import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
 import Contact from "./sections/Contact";
+import BootSequence from "./components/BootSequence";
 
 export default function App() {
   return (
-    <>
+    <><BootSequence />
+
       <CustomCursor />
       <NavBar />
       <Hero />

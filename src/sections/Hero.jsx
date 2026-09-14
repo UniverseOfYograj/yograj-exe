@@ -1,6 +1,11 @@
-
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import hero from "../assets/hero.jpg";
+import CoreActivation from "../components/CoreActivation";
 
 export default function Hero() {
   const mouseX = useMotionValue(0);
@@ -92,27 +97,34 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 text-center">
-        <h1 className="max-w-6xl text-6xl font-black leading-none tracking-[-0.05em] text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.6)] md:text-8xl lg:text-9xl">
-          {letters.map((letter, i) => (
-            <motion.span
-              key={i}
-              initial={{
-                opacity: 0,
-                y: 80,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                delay: i * 0.03,
-                duration: 0.55,
-              }}
-            >
-              {letter === " " ? "\u00A0" : letter}
-            </motion.span>
-          ))}
-        </h1>
+        {/* Boot Power-On Pulse */}
+        <div className="relative mb-2 flex items-center justify-center">
+          <div className="absolute h-[280px] w-[280px] md:h-[380px] md:w-[380px]">
+            <CoreActivation />
+          </div>
+
+          <h1 className="relative z-10 max-w-6xl text-6xl font-black leading-none tracking-[-0.05em] text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.6)] md:text-8xl lg:text-9xl">
+            {letters.map((letter, i) => (
+              <motion.span
+                key={i}
+                initial={{
+                  opacity: 0,
+                  y: 80,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  delay: i * 0.03,
+                  duration: 0.55,
+                }}
+              >
+                {letter === " " ? "\u00A0" : letter}
+              </motion.span>
+            ))}
+          </h1>
+        </div>
 
         <motion.p
           initial={{ opacity: 0 }}
