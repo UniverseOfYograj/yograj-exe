@@ -1,36 +1,54 @@
 import { motion } from "framer-motion";
 
 export default function SkillNode({
-  name,
   x,
   y,
+  label,
   active,
   onHover,
   onLeave,
-  onClick,
 }) {
   return (
-    <motion.button
-      onMouseEnter={() => onHover(name)}
-      onMouseLeave={onLeave}
-      onClick={() => onClick(name)}
+    <motion.g
       whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.96 }}
-      className="absolute -translate-x-1/2 -translate-y-1/2"
-      style={{
-        left: `${x}%`,
-        top: `${y}%`,
-      }}
+      onHoverStart={onHover}
+      onHoverEnd={onLeave}
+      style={{ cursor: "pointer" }}
     >
-      <div
-        className={`rounded-full border px-4 py-3 text-sm font-semibold transition-all duration-300 ${
+      <circle
+        cx={x}
+        cy={y}
+        r="24"
+        fill="#07131E"
+        stroke={active ? "#67E8F9" : "#22D3EE"}
+        strokeWidth="2"
+      />
+
+      <motion.circle
+        cx={x}
+        cy={y}
+        r="30"
+        fill="none"
+        stroke="#22D3EE"
+        strokeWidth="1.5"
+        animate={
           active
-            ? "border-cyan-300 bg-cyan-400/15 text-cyan-100 shadow-[0_0_18px_rgba(34,211,238,.35)]"
-            : "border-cyan-400/20 bg-[#08111F] text-white/80"
-        }`}
+            ? { scale: [1, 1.15, 1], opacity: [0.25, 0.7, 0.25] }
+            : { opacity: 0.2 }
+        }
+        transition={{ duration: 2, repeat: Infinity }}
+      />
+
+      <text
+        x={x}
+        y={y + 4}
+        textAnchor="middle"
+        fontSize="10"
+        fill="#E6F9FF"
+        fontWeight="600"
       >
-        {name}
-      </div>
-    </motion.button>
+        {label}
+      </text>
+    </motion.g>
   );
 }
