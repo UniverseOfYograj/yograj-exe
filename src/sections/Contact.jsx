@@ -14,9 +14,10 @@ export default function Contact() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Only one depth meter */}
-        <DepthMeter />
-
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr]">
+        <div className="hidden lg:block">
+  <DepthMeter />
+</div>
+        <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_.95fr]">
           {/* Left cinematic scene */}
           <div className="hidden lg:block">
             <AbyssScene />
@@ -24,6 +25,18 @@ export default function Contact() {
 
           {/* Right communication terminal */}
           <CommunicationTerminal />
+          <div className="mt-5 lg:hidden">
+  <div className="rounded-2xl border border-cyan-400/15 bg-[#04111B]/80 p-4 backdrop-blur-xl">
+    <div className="mb-2 flex justify-between text-xs tracking-[0.25em] text-cyan-200">
+      <span>DEPTH</span>
+      <span>984m</span>
+    </div>
+
+    <div className="h-1.5 rounded-full bg-white/10">
+      <div className="h-full w-[92%] rounded-full bg-cyan-400" />
+    </div>
+  </div>
+</div>
            <WhaleEasterEgg />
         </div>
       </div>

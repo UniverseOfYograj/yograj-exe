@@ -1,42 +1,65 @@
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+const links = [
+  { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
+  { name: "Projects", href: "#projects" },
+  { name: "Coding", href: "#coding" },
+  { name: "Contact", href: "#contact" },
+];
 
-const links = ["About", "Experience", "Projects", "Coding", "Contact"];
-
-export default function NavBar() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
 
   return (
-    <motion.nav
-      initial={{ y: -70, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7 }}
-      className="fixed top-5 left-1/2 -translate-x-1/2 z-50"
-    >
-      <div
-        className={`flex gap-6 rounded-full border px-7 py-3 transition-all duration-500 ${
-          scrolled
-            ? "border-orange-300/40 bg-black/30 backdrop-blur-2xl shadow-[0_0_30px_rgba(255,170,70,0.35)]"
-            : "border-white/20 bg-white/10 backdrop-blur-xl"
-        }`}
-      >
-        {links.map((item) => (
-          <a
-            key={item}
-            href={`#${item.toLowerCase()}`}
-            className="text-sm text-white/85 transition-colors duration-300 hover:text-orange-300"
-          >
-            {item}
-          </a>
-        ))}
-      </div>
-    </motion.nav>
+    <>
+      {/* Desktop */}
+      <nav className="fixed top-6 left-1/2 z-50 hidden -translate-x-1/2 md:block">
+        <div className="rounded-full border border-orange-400/25 bg-black/45 px-7 py-4 backdrop-blur-xl shadow-[0_0_40px_rgba(255,140,0,.18)]">
+          <div className="flex gap-8">
+            {links.map((l) => (
+              <a
+                key={l.name}
+                href={l.href}
+                className="text-sm text-white/85 transition hover:text-cyan-300"
+              >
+                {l.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile */}
+      <nav className="fixed top-4 left-4 right-4 z-50 md:hidden">
+        <div className="flex items-center justify-between rounded-2xl border border-orange-400/20 bg-black/50 px-4 py-3 backdrop-blur-xl">
+          <span className="font-bold tracking-wider text-white">YT</span>
+
+          <button onClick={() => setOpen(!open)}>
+            {open ? (
+              <X className="text-white" size={22} />
+            ) : (
+              <Menu className="text-white" size={22} />
+            )}
+          </button>
+        </div>
+
+        {open && (
+          <div className="mt-3 rounded-2xl border border-cyan-400/15 bg-[#04101A]/95 p-3 backdrop-blur-xl">
+            {links.map((l) => (
+              <a
+                key={l.name}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="block rounded-xl px-3 py-3 text-white/90 transition hover:bg-cyan-400/10"
+              >
+                {l.name}
+              </a>
+            ))}
+          </div>
+        )}
+      </nav>
+    </>
   );
 }
