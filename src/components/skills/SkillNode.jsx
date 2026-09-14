@@ -7,34 +7,37 @@ export default function SkillNode({
   active,
   onHover,
   onLeave,
+  onTap,
 }) {
   return (
     <motion.g
       whileHover={{ scale: 1.08 }}
+      whileTap={{ scale: 0.95 }}
       onHoverStart={onHover}
       onHoverEnd={onLeave}
+      onTap={onTap}
       style={{ cursor: "pointer" }}
     >
       <circle
         cx={x}
         cy={y}
-        r="24"
-        fill="#07131E"
-        stroke={active ? "#67E8F9" : "#22D3EE"}
+        r="23"
+        fill="#061320"
+        stroke={active ? "#7BE9FF" : "#22D3EE"}
         strokeWidth="2"
       />
 
       <motion.circle
         cx={x}
         cy={y}
-        r="30"
+        r="29"
         fill="none"
         stroke="#22D3EE"
         strokeWidth="1.5"
         animate={
           active
-            ? { scale: [1, 1.15, 1], opacity: [0.25, 0.7, 0.25] }
-            : { opacity: 0.2 }
+            ? { scale: [1, 1.18, 1], opacity: [0.2, 0.7, 0.2] }
+            : { opacity: 0.15 }
         }
         transition={{ duration: 2, repeat: Infinity }}
       />
@@ -44,7 +47,7 @@ export default function SkillNode({
         y={y + 4}
         textAnchor="middle"
         fontSize="10"
-        fill="#E6F9FF"
+        fill="#E8FCFF"
         fontWeight="600"
       >
         {label}
