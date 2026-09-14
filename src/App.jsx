@@ -7,6 +7,7 @@ import DNASection from "./sections/DNASection";
 import Experience from "./sections/Experience";
 import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
+import Contact from "./sections/Contact";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
 <Experience />
 <Projects />
 <Skills />
+<Contact />
 
     </>
   );
