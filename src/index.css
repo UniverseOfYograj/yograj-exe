@@ -230,16 +230,21 @@ button:focus-visible {
 .hero-title {
   font-family: var(--display-font);
   font-size: clamp(5rem, 13vw, 15rem);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.085em;
   line-height: 0.78;
-  text-shadow: 0 10px 45px rgba(0, 0, 0, 0.32);
+  background: linear-gradient(90deg, #ffffff 0%, #bdefff 36%, #67e8f9 72%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 12px 46px rgba(0, 0, 0, 0.4);
 }
 
 .hero-title-last {
   margin-top: 0.13em;
-  color: #bdefff;
-  font-size: 0.64em;
+  color: #e6fbff;
+  font-size: 0.66em;
+  font-weight: 700;
   letter-spacing: -0.035em;
 }
 
