@@ -18,7 +18,7 @@ const platformStyles = {
     glow: "rgba(67,217,154,0.28)",
     Icon: GeeksForGeeksIcon,
   },
-  "Coding Ninjas": {
+  Code360: {
     accent: "#B79AFF",
     glow: "rgba(183,154,255,0.3)",
     Icon: CodingNinjasIcon,

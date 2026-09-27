@@ -11,8 +11,8 @@ export const siteConfig = {
   codingProfiles: [
     {
       name: "LeetCode",
-      username: "Yograj1008",
-      href: "https://leetcode.com/u/Yograj1008/",
+      username: "Yograj108",
+      href: "https://leetcode.com/u/Yograj108/",
       accent: "#fbbf68",
     },
     {
@@ -22,9 +22,9 @@ export const siteConfig = {
       accent: "#67e8f9",
     },
     {
-      name: "Coding Ninjas",
-      username: "Coding Ninjas",
-      href: "https://www.codingninjas.com/",
+      name: "Code360",
+      username: "UltimateYogiRaj",
+      href: "https://www.naukri.com/code360/profile/UltimateYogiRaj",
       accent: "#38bdf8",
     },
   ],

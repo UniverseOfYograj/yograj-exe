@@ -23,9 +23,9 @@
 
 - GitHub: https://github.com/UniverseOfYograj
 - LinkedIn: https://www.linkedin.com/in/yograjtripathi9/
-- LeetCode: https://leetcode.com/u/Yograj1008/
+- LeetCode: https://leetcode.com/u/Yograj108/
 - GeeksforGeeks: https://www.geeksforgeeks.org/profile/pushpyogth1z
-- Coding Ninjas: https://www.codingninjas.com/
+- Code360: https://www.naukri.com/code360/profile/UltimateYogiRaj
 
 ## Run Locally
 
