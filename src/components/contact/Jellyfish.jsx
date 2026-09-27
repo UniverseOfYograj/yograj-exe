@@ -11,6 +11,7 @@ export default function Jellyfish() {
       {items.map((j, i) => (
         <motion.div
           key={i}
+          aria-hidden="true"
           animate={{ y: [-8, 10, -8] }}
           transition={{
             duration: 7,

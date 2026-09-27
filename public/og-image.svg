@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="nebula" cx="77%" cy="48%" r="64%">
+      <stop offset="0" stop-color="#0b4155"/>
+      <stop offset=".48" stop-color="#092134"/>
+      <stop offset="1" stop-color="#020814"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop stop-color="#fbbf68"/>
+      <stop offset="1" stop-color="#67e8f9"/>
+    </linearGradient>
+    <radialGradient id="planet" cx=".36" cy=".28">
+      <stop stop-color="#67e8f9" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#061320"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#020814"/>
+  <rect width="1200" height="630" fill="url(#nebula)"/>
+  <g fill="none" stroke="#bdefff" stroke-opacity=".2">
+    <ellipse cx="927" cy="318" rx="221" ry="90" transform="rotate(-23 927 318)"/>
+    <ellipse cx="927" cy="318" rx="255" ry="124" transform="rotate(36 927 318)"/>
+    <ellipse cx="927" cy="318" rx="178" ry="153" transform="rotate(-68 927 318)"/>
+  </g>
+  <circle cx="927" cy="318" r="76" fill="url(#planet)" stroke="#bdefff" stroke-opacity=".56"/>
+  <circle cx="927" cy="318" r="7" fill="#fbbf68"/>
+  <g fill="#eff6ff" fill-opacity=".7">
+    <circle cx="793" cy="144" r="2"/><circle cx="1092" cy="182" r="2"/>
+    <circle cx="1075" cy="478" r="1.5"/><circle cx="776" cy="470" r="1.5"/>
+  </g>
+  <path d="M76 120h54" stroke="url(#accent)" stroke-width="3"/>
+  <text x="76" y="166" fill="#bdefff" font-family="Arial,sans-serif" font-size="17" letter-spacing="5">SOFTWARE ENGINEER · TCS</text>
+  <text x="68" y="330" fill="#f8fbff" font-family="Arial,sans-serif" font-size="108" font-weight="700" letter-spacing="-6">YOGRAJ</text>
+  <text x="72" y="425" fill="#bdefff" font-family="Arial,sans-serif" font-size="76" font-weight="700" letter-spacing="-2">TRIPATHI</text>
+  <text x="78" y="490" fill="#b4c8d8" font-family="Arial,sans-serif" font-size="20">Java · Spring Boot · React · Building with intention</text>
+  <text x="78" y="574" fill="#7790a3" font-family="Arial,sans-serif" font-size="14" letter-spacing="4">YOGRAJ.EXE</text>
+</svg>

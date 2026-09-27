@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 
 export default function ProjectPlanet({
   title,
+  shortTitle,
+  status,
+  tone,
   x,
   y,
   size,
@@ -11,9 +14,11 @@ export default function ProjectPlanet({
   return (
     <motion.button
       onClick={onClick}
+      aria-label={`Inspect ${title}`}
+      aria-pressed={active}
       whileHover={{ scale: 1.06 }}
       whileTap={{ scale: 0.97 }}
-      className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+      className={`project-planet project-planet-${tone} absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200`}
       style={{
         left: `${x}%`,
         top: `${y}%`,
@@ -32,33 +37,18 @@ export default function ProjectPlanet({
         )}
 
         {/* Orbit Ring */}
-        <motion.div
-          animate={active ? { rotate: 360 } : {}}
-          transition={
-            active
-              ? {
-                  duration: 18,
-                  repeat: Infinity,
-                  ease: "linear",
-                }
-              : {}
-          }
+        <div
           className={`absolute rounded-full border ${
-            active
-              ? "border-cyan-300/70"
-              : "border-cyan-400/20"
+            active ? "border-cyan-200/70" : "border-cyan-100/20"
           }`}
           style={{
             width: size + 16,
             height: size + 16,
           }}
         >
-          {/* Satellite 1 */}
           <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 rounded-full bg-cyan-300" />
-
-          {/* Satellite 2 */}
           <div className="absolute bottom-0 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-cyan-200/80" />
-        </motion.div>
+        </div>
 
         {/* Planet */}
         <motion.div
@@ -82,8 +72,9 @@ export default function ProjectPlanet({
           style={{
             width: size,
             height: size,
-            background:
-              "radial-gradient(circle at 35% 28%, rgba(120,235,255,.45), rgba(7,25,40,.95) 72%)",
+            background: active
+              ? "radial-gradient(circle at 35% 28%, rgba(189,239,255,.5), rgba(7,25,40,.95) 72%)"
+              : "radial-gradient(circle at 35% 28%, rgba(103,232,249,.24), rgba(7,25,40,.98) 72%)",
           }}
         >
           {/* Specular Highlight */}
@@ -97,29 +88,18 @@ export default function ProjectPlanet({
         </motion.div>
 
         {/* Label */}
-        <motion.p
-          animate={
-            active
-              ? {
-                  y: [-1, 1, -1],
-                }
-              : {}
-          }
-          transition={
-            active
-              ? {
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }
-              : {}
-          }
-          className={`mt-4 w-28 text-center text-sm font-semibold ${
-            active ? "text-white" : "text-white/75"
+        <span
+          className={`project-planet-label mt-4 max-w-32 text-center text-xs font-semibold leading-tight ${
+            active ? "text-white" : "text-slate-200/75"
           }`}
         >
-          {title}
-        </motion.p>
+          <span className="block">{shortTitle || title}</span>
+          {status && (
+            <span className="mt-1 block font-mono text-[7px] tracking-[0.08em] text-cyan-100/70">
+              {status}
+            </span>
+          )}
+        </span>
       </div>
     </motion.button>
   );

@@ -9,14 +9,28 @@ export default function SkillNode({
   onLeave,
   onTap,
 }) {
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      onTap();
+    }
+  };
+
   return (
     <motion.g
+      role="button"
+      tabIndex={0}
+      aria-label={`Activate ${label} technology node`}
+      aria-pressed={active}
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.95 }}
       onHoverStart={onHover}
       onHoverEnd={onLeave}
+      onFocus={onHover}
+      onBlur={onLeave}
+      onKeyDown={handleKeyDown}
       onTap={onTap}
-      style={{ cursor: "pointer" }}
+      style={{ cursor: "pointer", outline: "none" }}
     >
       <circle
         cx={x}

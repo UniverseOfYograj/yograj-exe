@@ -1,191 +1,175 @@
 import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, Trophy } from "lucide-react";
-
+import { ArrowUpRight, BriefcaseBusiness, GraduationCap, Trophy } from "lucide-react";
 import StarField from "../components/timeline/StarField";
 import ShootingStar from "../components/timeline/ShootingStar";
-import TwinkleStars from "../components/timeline/TwinkleStars";
-import ConstellationLine from "../components/timeline/ConstellationLine";
-import TimelineNode from "../components/timeline/TimelineNode";
 
 const timeline = [
   {
-    title: "Software Engineer — TCS",
-    date: "Jun 2025 — Present",
-    active: true,
-    icon: <Briefcase className="h-5 w-5 text-cyan-300" />,
+    date: "JUNE 2025 — PRESENT",
+    label: "CURRENT MISSION",
+    title: "Software Engineer",
+    organization: "Tata Consultancy Services",
     description:
-      "Building scalable Java backend applications using Spring Boot, Spring MVC, Spring Security, JPA/Hibernate and MySQL while delivering secure backend solutions.",
+      "Designing and building dependable Java backend applications, secure APIs, and maintainable services for real-world business needs.",
+    icon: BriefcaseBusiness,
+    current: true,
+    technologies: ["Java", "Spring Boot", "Spring Security", "JPA / Hibernate", "MySQL"],
   },
   {
-    title: "Bachelor of Technology",
     date: "2020 — 2024",
-    icon: <GraduationCap className="h-5 w-5 text-cyan-300" />,
+    label: "FOUNDATIONS",
+    title: "B.Tech — Information Technology",
+    organization: "Oriental Institute of Science & Technology · Bhopal",
     description:
-      "Graduated from Oriental Institute of Science & Technology, Bhopal with a strong foundation in Java development, backend engineering and software design.",
-  },
-  {
-    title: "430+ DSA Problems Solved",
-    date: "Achievement",
-    icon: <Trophy className="h-5 w-5 text-cyan-300" />,
-    description:
-      "Strengthened problem-solving through Coding Ninjas and GeeksforGeeks, including a Global Rank 1687.",
+      "Built a strong grounding in computer science, software design, and full-stack development.",
+    icon: GraduationCap,
+    technologies: ["CGPA 8.65", "Information Technology"],
   },
 ];
 
-function ConstellationMap() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="mx-auto my-12 flex justify-center"
-    >
-      <svg width="260" height="120" viewBox="0 0 260 120">
-        <defs>
-          <filter id="constGlow">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
+const achievements = [
+  { value: "430+", label: "DSA PROBLEMS", detail: "Solved and still counting" },
+  { value: "AI", label: "GENERATIVE AI", detail: "Microsoft × LinkedIn learning" },
+  { value: "Spring", label: "SPRING BOOT", detail: "Learning through practical builds" },
+  { value: "Clean", label: "ARCHITECTURE", detail: "Maintainability as a design choice" },
+];
 
-          <linearGradient id="constLine" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#67E8F9" />
-            <stop offset="100%" stopColor="#0EA5E9" />
-          </linearGradient>
-        </defs>
-
-        <path
-          d="M40 70 Q130 15 220 70"
-          fill="none"
-          stroke="url(#constLine)"
-          strokeWidth="2"
-          opacity="0.35"
-        />
-
-        <motion.path
-          d="M40 70 Q130 15 220 70"
-          fill="none"
-          stroke="#8BE9FD"
-          strokeWidth="3"
-          initial={{ pathLength: 0 }}
-          whileInView={{ pathLength: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5 }}
-          style={{ filter: "drop-shadow(0 0 10px #22d3ee)" }}
-        />
-
-        {[
-          { x: 40, y: 70, d: 0 },
-          { x: 130, y: 20, d: 0.4 },
-          { x: 220, y: 70, d: 0.8 },
-        ].map((s, i) => (
-          <motion.circle
-            key={i}
-            cx={s.x}
-            cy={s.y}
-            r="6"
-            fill="#67E8F9"
-            filter="url(#constGlow)"
-            animate={{ scale: [1, 1.4, 1] }}
-            transition={{
-              repeat: Infinity,
-              duration: 2,
-              delay: s.d,
-            }}
-          />
-        ))}
-      </svg>
-    </motion.div>
-  );
-}
+const reveal = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative overflow-hidden bg-black pt-36 pb-28"
+      className="mission-section relative isolate overflow-hidden bg-[#04111B] py-24 sm:py-32"
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-[#040A18] to-black" />
-
-      {/* Nebula */}
-      <motion.div
-        animate={{
-          scale: [1, 1.08, 1],
-          opacity: [0.12, 0.24, 0.12],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 18,
-        }}
-        className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[180px]"
-      />
-
+      <div className="mission-atmosphere pointer-events-none absolute inset-0" aria-hidden="true" />
       <StarField />
       <ShootingStar />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-
-        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-24 text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          variants={reveal}
+          transition={{ duration: 0.6 }}
+          className="mb-14 max-w-3xl sm:mb-20"
         >
-          <div className="relative">
-            <TwinkleStars />
-
-            <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200">
-              Career Constellation
-            </span>
-
-            <h2 className="mt-6 text-4xl font-black text-white md:text-6xl">
-              Every Milestone Became a Star
-            </h2>
-
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/60">
-              My journey isn't a straight line—it's a constellation where every
-              project, challenge and achievement connects to the next.
-            </p>
-
-            <ConstellationMap />
-          </div>
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-cyan-200">
+            02 / MISSION TIMELINE
+          </p>
+          <h2 className="text-4xl font-bold leading-[1.02] text-white sm:text-6xl lg:text-7xl">
+            Every chapter
+            <span className="block text-cyan-200">builds the next.</span>
+          </h2>
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300/70 sm:text-base">
+            From IT foundations to production Java systems.
+          </p>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative mt-12">
-          <ConstellationLine />
+        <div className="mission-timeline relative">
+          {timeline.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.article
+                key={item.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={reveal}
+                transition={{
+                  duration: 0.55,
+                  delay: index * 0.08,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className={`mission-entry relative grid gap-5 py-7 sm:py-9 ${
+                  item.current ? "mission-entry-current" : ""
+                }`}
+              >
+                <div className="mission-date flex items-start gap-3 sm:gap-4">
+                  <span className="mission-marker relative z-10 mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-full border border-cyan-200/30 bg-[#04111B] text-cyan-100">
+                    <Icon size={16} strokeWidth={1.7} />
+                  </span>
+                  <span className="pt-2 font-mono text-[9px] leading-5 tracking-[0.12em] text-slate-400 sm:text-[10px]">
+                    {item.date}
+                  </span>
+                </div>
 
-          <div className="space-y-20">
-            {timeline.map((item, index) => (
-              <TimelineNode
-                key={index}
-                index={index}
-                title={item.title}
-                date={item.date}
-                description={item.description}
-                icon={item.icon}
-                active={item.active}
-              />
+                <div className="mission-entry-content min-w-0">
+                  <div className="mb-2 flex flex-wrap items-center gap-2">
+                    <span className="font-mono text-[9px] tracking-[0.18em] text-cyan-200">
+                      {item.label}
+                    </span>
+                    {item.current && (
+                      <span className="mission-current-badge inline-flex items-center gap-1.5 rounded-full border border-cyan-200/20 bg-cyan-200/[0.07] px-2.5 py-1 font-mono text-[8px] tracking-[0.1em] text-cyan-100">
+                        <span className="h-1.5 w-1.5 rounded-full bg-cyan-200 shadow-[0_0_10px_#67e8f9]" />
+                        IN ORBIT
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="mission-entry-title text-2xl font-bold leading-tight text-white sm:text-3xl">
+                    {item.title}
+                  </h3>
+                  <p className="mission-entry-organization mt-1 text-sm font-semibold text-sky-100/80 sm:text-base">
+                    {item.organization}
+                  </p>
+                  <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300/70">
+                    {item.description}
+                  </p>
+                  <div className="mission-chip-list mt-4 flex flex-wrap gap-2">
+                    {item.technologies.map((technology) => (
+                      <span key={technology} className="mission-chip">
+                        {technology}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.article>
+            );
+          })}
+        </div>
+
+        <div className="mt-20 border-t border-white/10 pt-7 sm:mt-24">
+          <div className="mb-6 flex items-center gap-2 text-cyan-100">
+            <Trophy size={16} />
+            <p className="font-mono text-[10px] tracking-[0.18em]">
+              PROGRESS LOG
+            </p>
+          </div>
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+            {achievements.map((achievement, index) => (
+              <motion.div
+                key={achievement.label}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.35 }}
+                variants={reveal}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="mission-achievement group bg-[#061320]/95 px-5 py-6 sm:px-7 sm:py-7"
+              >
+                <p className="mission-achievement-value text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                  {achievement.value}
+                </p>
+                <p className="mission-achievement-label mt-2 font-mono text-[9px] tracking-[0.14em] text-cyan-100">
+                  {achievement.label}
+                </p>
+                <p className="mission-achievement-detail mt-2 text-xs text-slate-400">
+                  {achievement.detail}
+                </p>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Footer */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="mt-24 text-center text-white/35"
+        <a
+          href="#projects"
+          className="mt-8 inline-flex items-center gap-2 text-xs font-medium text-slate-300 transition-colors hover:text-cyan-100"
         >
-          Every milestone added another star to the constellation I'm still building.
-        </motion.p>
+          Continue to selected work <ArrowUpRight size={14} />
+        </a>
       </div>
     </section>
   );

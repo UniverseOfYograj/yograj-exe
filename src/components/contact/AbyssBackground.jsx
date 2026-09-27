@@ -3,6 +3,7 @@ import Kelp from "./Kelp";
 import SeaRocks from "./SeaRocks";
 import Jellyfish from "./Jellyfish";
 import WaterCaustics from "./WaterCaustics";
+import { SeaFish } from "./AbyssScene";
 
 export default function AbyssBackground() {
   return (
@@ -12,6 +13,17 @@ export default function AbyssBackground() {
       <WaterCaustics />
       <BubbleField />
       <Jellyfish />
+      <SeaFish
+        className="left-[14%] top-[49%] opacity-55"
+        delay={0.4}
+        duration={15}
+      />
+      <SeaFish
+        className="right-[12%] top-[73%] opacity-40"
+        delay={2.2}
+        duration={19}
+        reverse
+      />
       <Kelp />
       <SeaRocks />
 

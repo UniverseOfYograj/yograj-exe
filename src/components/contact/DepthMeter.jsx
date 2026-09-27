@@ -3,38 +3,25 @@ import { motion } from "framer-motion";
 export default function DepthMeter() {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: -8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="absolute left-8 top-10 z-20 w-28 overflow-hidden rounded-2xl border border-cyan-400/20 bg-[#06111B]/75 p-3 backdrop-blur-md"
+      transition={{ duration: 0.45 }}
+      className="depth-meter absolute right-5 top-5 z-20 flex items-center gap-3 rounded-full border border-cyan-100/15 bg-[#04111B]/75 px-3.5 py-2 backdrop-blur-md sm:right-8 sm:top-7 sm:gap-4 sm:px-4"
+      role="meter"
+      aria-label="Ocean depth"
+      aria-valuemin={0}
+      aria-valuemax={1100}
+      aria-valuenow={984}
     >
-      {/* Tiny status light */}
-      <div className="mb-2 flex items-center gap-2">
-        <div className="h-2 w-2 animate-pulse rounded-full bg-cyan-300" />
-        <span className="text-[9px] tracking-[0.25em] text-cyan-200">
-          DEPTH
-        </span>
-      </div>
-
-      {/* Progress */}
-      <div className="mb-3 h-1.5 overflow-hidden rounded-full bg-white/10">
-        <motion.div
-          initial={{ width: "0%" }}
-          whileInView={{ width: "92%" }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.4 }}
-          className="h-full rounded-full bg-gradient-to-r from-cyan-300 via-cyan-400 to-sky-300"
-        />
-      </div>
-
-      <div className="text-3xl font-black leading-none text-cyan-100">
-        984m
-      </div>
-
-      <div className="mt-1 text-[9px] tracking-[0.22em] text-cyan-300/70">
-        ABYSS ZONE
-      </div>
+      <span className="h-1.5 w-1.5 rounded-full bg-cyan-200 shadow-[0_0_10px_#67e8f9]" />
+      <span className="font-mono text-[8px] tracking-[0.13em] text-cyan-100/80 sm:text-[9px]">
+        DEPTH
+      </span>
+      <span className="h-3 w-px bg-white/15" />
+      <span className="text-sm font-semibold tracking-tight text-white sm:text-base">
+        984<span className="ml-0.5 text-[9px] font-normal text-cyan-100/80">m</span>
+      </span>
     </motion.div>
   );
 }

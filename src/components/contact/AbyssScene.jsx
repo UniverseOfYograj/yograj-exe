@@ -1,5 +1,32 @@
 import { motion } from "framer-motion";
 
+export function SeaFish({ className, delay, duration, reverse = false }) {
+  const shape = reverse
+    ? "M12 22 C26 8 48 8 62 22 C48 36 26 36 12 22 Z M12 22 0 12 2 22 0 32 Z"
+    : "M0 22 C14 8 36 8 50 22 C36 36 14 36 0 22 Z M50 22 62 12 60 22 62 32 Z";
+
+  return (
+    <motion.div
+      className={`pointer-events-none absolute ${className}`}
+      aria-hidden="true"
+      animate={{ x: reverse ? [0, -34, 0] : [0, 42, 0], y: [0, -5, 0] }}
+      transition={{ duration, delay, repeat: Infinity, ease: "easeInOut" }}
+    >
+      <svg
+        width={reverse ? 54 : 62}
+        height="42"
+        viewBox="0 0 64 44"
+        fill="none"
+        className="overflow-visible"
+      >
+        <path d={shape} fill="#38BDF8" fillOpacity=".15" stroke="#67E8F9" strokeOpacity=".43" strokeWidth="1.2" />
+        <path d={reverse ? "M21 22c8-6 16-7 25-3" : "M15 22c8-6 16-7 25-3"} stroke="#BDEFFF" strokeOpacity=".33" strokeWidth="1" strokeLinecap="round" />
+        <circle cx={reverse ? "45" : "17"} cy="19" r="1.5" fill="#BDEFFF" fillOpacity=".62" />
+      </svg>
+    </motion.div>
+  );
+}
+
 export default function AbyssScene() {
   return (
     <div className="relative h-[520px] w-full overflow-hidden rounded-[36px]">
@@ -125,36 +152,6 @@ export default function AbyssScene() {
 </motion.div>
 
       {/* Fish */}
-      <motion.div
-        className="absolute top-60 text-xl"
-        animate={{
-          x: [300, 210, 320],
-          y: [0, -8, 0],
-        }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        🐟
-      </motion.div>
-
-      <motion.div
-        className="absolute top-80 text-lg"
-        animate={{
-          x: [170, 250, 170],
-          y: [0, -5, 0],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        🐠
-      </motion.div>
-
       {/* Jellyfish */}
       <motion.div
         className="absolute right-12 top-36 text-3xl opacity-70"

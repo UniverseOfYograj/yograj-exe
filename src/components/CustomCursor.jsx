@@ -1,27 +1,27 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function CustomCursor() {
-  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const pointerX = useMotionValue(-24);
+  const pointerY = useMotionValue(-24);
+  const x = useSpring(pointerX, { stiffness: 420, damping: 36, mass: 0.35 });
+  const y = useSpring(pointerY, { stiffness: 420, damping: 36, mass: 0.35 });
 
   useEffect(() => {
-    const move = (e) => setPos({ x: e.clientX, y: e.clientY });
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
-  }, []);
+    const move = (event) => {
+      pointerX.set(event.clientX);
+      pointerY.set(event.clientY);
+    };
+
+    window.addEventListener("pointermove", move, { passive: true });
+    return () => window.removeEventListener("pointermove", move);
+  }, [pointerX, pointerY]);
 
   return (
     <motion.div
-      animate={{
-        x: pos.x - 10,
-        y: pos.y - 10,
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 350,
-        damping: 25,
-      }}
-      className="hidden md:block fixed h-5 w-5 rounded-full border border-orange-300 bg-orange-300/30 backdrop-blur-sm pointer-events-none z-[100]"
+      aria-hidden="true"
+      style={{ x, y }}
+      className="custom-cursor pointer-events-none fixed left-0 top-0 z-[100] h-5 w-5 rounded-full border border-cyan-100/75 bg-cyan-100/20"
     />
   );
 }

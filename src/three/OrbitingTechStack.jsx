@@ -1,54 +1,46 @@
-import { Text } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
-import * as THREE from "three";
+import { RoundedBox, Text } from "@react-three/drei";
 
 const skills = [
-  "Java",
-  "Spring Boot",
-  "React",
-  "Docker",
-  "REST APIs",
+  { name: "Kafka", color: "#9AF7FF", position: [-1.3, 1.45, 1.2] },
+  { name: "RabbitMQ", color: "#FFD18A", position: [1.3, 1.45, 1.2] },
+  { name: "Spring", color: "#B6F5D0", position: [-1.3, 0.95, 1.2] },
+  { name: "Spring JDBC", color: "#BDEBFF", position: [1.3, 0.95, 1.2] },
+  { name: "Spring Boot", color: "#9AF7FF", position: [-1.3, -0.95, 1.2] },
+  { name: "Microservices", color: "#FFD18A", position: [1.3, -0.95, 1.2] },
+  { name: "Eureka", color: "#B6F5D0", position: [-1.3, -1.45, 1.2] },
+  { name: "Multithreading", color: "#BDEBFF", position: [1.3, -1.45, 1.2] },
 ];
 
 export default function OrbitingTechStack() {
-  const group = useRef();
-
-  useFrame(({ clock }) => {
-    group.current.rotation.y = clock.elapsedTime * 0.22;
-  });
-
   return (
-    <group ref={group}>
-      {skills.map((skill, i) => {
-        const angle = (i / skills.length) * Math.PI * 2;
-        const radius = 2.2;
-
+    <>
+      {skills.map(({ name, color, position }) => {
+        const width = name.length * 0.075 + 0.22;
         return (
-          <group
-            key={skill}
-            position={[
-              Math.cos(angle) * radius,
-              1 - i * 0.45,
-              Math.sin(angle) * radius,
-            ]}
-          >
+          <group key={name} position={position}>
+            <RoundedBox args={[width, 0.3, 0.045]} radius={0.08} smoothness={4}>
+              <meshStandardMaterial
+                color="#061a2a"
+                emissive="#07384b"
+                emissiveIntensity={0.55}
+                metalness={0.25}
+                roughness={0.4}
+              />
+            </RoundedBox>
             <Text
-              fontSize={0.18}
-              color="#A5F3FC"
+              position={[0, 0, 0.03]}
+              fontSize={0.125}
+              color={color}
+              outlineColor="#020814"
+              outlineWidth={0.004}
               anchorX="center"
               anchorY="middle"
             >
-              {skill}
+              {name}
             </Text>
-
-            <mesh position={[0, -0.18, 0]}>
-              <sphereGeometry args={[0.05, 16, 16]} />
-              <meshBasicMaterial color="#67E8F9" />
-            </mesh>
           </group>
         );
       })}
-    </group>
+    </>
   );
 }

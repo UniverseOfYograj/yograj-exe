@@ -1,46 +1,36 @@
-import { motion } from "framer-motion";
-
 export default function OrbitLines() {
   return (
     <svg
-      className="absolute inset-0 h-full w-full"
+      className="project-orbit-lines pointer-events-none absolute inset-2 h-[calc(100%-1rem)] w-[calc(100%-1rem)]"
       viewBox="0 0 100 100"
-      preserveAspectRatio="none"
+      fill="none"
+      aria-hidden="true"
     >
-      <g
-        stroke="rgba(34,211,238,.18)"
-        strokeWidth="0.7"
-        strokeLinecap="round"
-        fill="none"
-      >
-        {/* Smart Agriculture */}
-        <path d="M50 50 Q36 34 18 25" />
-
-        {/* Portfolio */}
-        <path d="M50 50 Q60 35 72 25" />
-
-        {/* 430+ DSA */}
-        <path d="M50 50 Q37 66 22 72" />
-
-        {/* Next Universe - FIXED */}
-        <path d="M50 50 Q59 61 67 70" />
-      </g>
-
-      {/* Active signal */}
-      <motion.circle
-        r="1.1"
-        fill="#22d3ee"
-        animate={{
-          offsetDistance: ["0%", "100%", "0%"],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        style={{
-          offsetPath: "path('M50 50 Q36 34 18 25')",
-        }}
+      <ellipse
+        cx="50"
+        cy="50"
+        rx="34"
+        ry="20"
+        stroke="rgba(103,232,249,.28)"
+        strokeWidth=".35"
+      />
+      <ellipse
+        cx="50"
+        cy="50"
+        rx="37"
+        ry="23"
+        transform="rotate(55 50 50)"
+        stroke="rgba(189,239,255,.16)"
+        strokeWidth=".28"
+      />
+      <ellipse
+        cx="50"
+        cy="50"
+        rx="29"
+        ry="17"
+        transform="rotate(-48 50 50)"
+        stroke="rgba(251,191,104,.18)"
+        strokeWidth=".25"
       />
     </svg>
   );

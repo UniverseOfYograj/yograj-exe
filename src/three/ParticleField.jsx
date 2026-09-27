@@ -1,28 +1,13 @@
-import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+const particles = Array.from({ length: 22 }, (_, index) => ({
+  x: Math.sin(index * 12.9898) * 2.5,
+  y: ((index * 37) % 22) * 0.36 - 4,
+  z: Math.cos(index * 4.1414) * 1.5,
+  s: 0.02 + ((index * 17) % 5) * 0.009,
+}));
 
 export default function ParticleField() {
-  const ref = useRef();
-
-  const particles = useMemo(() => {
-    const arr = [];
-    for (let i = 0; i < 22; i++) {
-      arr.push({
-        x: (Math.random() - 0.5) * 5,
-        y: (Math.random() - 0.5) * 8,
-        z: (Math.random() - 0.5) * 3,
-        s: Math.random() * 0.04 + 0.02,
-      });
-    }
-    return arr;
-  }, []);
-
-  useFrame(({ clock }) => {
-    ref.current.rotation.y = clock.elapsedTime * 0.04;
-  });
-
   return (
-    <group ref={ref}>
+    <group>
       {particles.map((p, i) => (
         <mesh key={i} position={[p.x, p.y, p.z]}>
           <sphereGeometry args={[p.s, 12, 12]} />
